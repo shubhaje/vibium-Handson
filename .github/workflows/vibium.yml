@@ -7,18 +7,30 @@ jobs:
     runs-on: windows-latest
     strategy:
       matrix:
-        python-version: [3.8, 3.9, '3.10']
+        python-version: ['3.13.9']
     
     steps:
-      - uses: actions/checkout@v2
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       
-      - name: Set up Python
-        uses: actions/setup-python@v2
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v4
         with:
           python-version: ${{ matrix.python-version }}
+          cache: 'pip'
       
       - name: Install dependencies
-        run: pip install vibium selenium python-dotenv pytest
+        run: pip install --upgrade pip && pip install vibium selenium python-dotenv pytest
       
       - name: Run tests
-        run: python test_vibium.py
+        run: python -m pytest test_vibium.py -v --tb=short
+      
+      - name: Upload screenshots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: screenshots-${{ matrix.python-version }}
+          path: screenshots/
+          if-no-files-found: ignore
