@@ -1,0 +1,49 @@
+# Vibium Setup Configuration
+
+# Project Setup
+setup:
+  project_name: "vibium"
+  version: "1.0.0"
+  description: "Browser automation testing with vibium"
+
+# Dependencies/Packages to install
+dependencies:
+  - vibium
+  - selenium
+  - python-dotenv
+  - pytest
+
+# Folder Structure
+folders:
+  screenshots: "screenshots"
+  tests: "./"
+  logs: "logs"
+
+# Browser Configuration
+browser:
+  headless: true
+  timeout: 30
+  width: 1280
+  height: 720
+
+# Screenshot Settings
+screenshot:
+  folder: "screenshots"
+  format: "png"
+  quality: 95
+
+# Test Configuration
+test:
+  test_file: "test_vibium.py"
+  auto_run: false
+  verbose: true
+
+# Installation Instructions
+install:
+  command: "pip install vibium selenium python-dotenv pytest"
+  python_version: "3.8+"
+
+# Run Instructions
+run:
+  command: "python test_vibium.py"
+  description: "Run vibium browser automation tests"
