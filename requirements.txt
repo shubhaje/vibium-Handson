@@ -1,0 +1,4 @@
+vibium
+selenium
+python-dotenv
+pytest
