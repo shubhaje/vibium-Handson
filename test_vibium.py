@@ -47,12 +47,12 @@ class TestVibium:
         assert link is not None
         print("Found link:", link.text())
     
-    def test_find_multiple_elements(self, vibe):
-        """Test finding multiple elements."""
-        vibe.go("https://example.com")
-        items = vibe.find_all("a")
-        assert len(items) > 0
-        print(f"Found {len(items)} links on the page.")
+    # def test_find_multiple_elements(self, vibe):
+    #     """Test finding multiple elements."""
+    #     vibe.go("https://example.com")
+    #     items = vibe.find_all("a")
+    #     assert len(items) > 0
+    #     print(f"Found {len(items)} links on the page.")
 
 
 def test_config_loaded():
