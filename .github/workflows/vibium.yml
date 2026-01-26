@@ -1,0 +1,39 @@
+name: Vibium Tests
+
+on: [push, pull_request]
+
+jobs:
+  test:
+    runs-on: windows-latest
+    strategy:
+      matrix:
+        python-version: [3.8, 3.9, '3.10']
+    
+    steps:
+      - uses: actions/checkout@v2
+      
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: ${{ matrix.python-version }}
+      
+      - name: Install dependencies
+        run: pip install vibium selenium python-dotenv pytest
+      
+      - name: Run tests
+        run: python test_vibium.py
+
+# Project Configuration
+config:
+  project_name: "vibium"
+  version: "1.0.0"
+  description: "Browser automation testing with vibium"
+  browser:
+    headless: true
+    timeout: 30
+    width: 1280
+    height: 720
+  screenshot:
+    folder: "screenshots"
+    format: "png"
+    quality: 95
