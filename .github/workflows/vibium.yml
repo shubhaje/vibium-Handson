@@ -27,7 +27,7 @@ jobs:
       - name: Run tests
         run: |
           python -m pytest test_vibium.py -v --tb=short
-          python ui_test_agent_vibium.py
+          python "${{ github.workspace }}\ui_test_agent_vibium.py"
       
       - name: Upload screenshots
         if: always()
