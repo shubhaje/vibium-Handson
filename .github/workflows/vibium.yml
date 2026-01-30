@@ -25,7 +25,9 @@ jobs:
         run: pip install --upgrade pip && pip install -r requirements.txt
       
       - name: Run tests
-        run: python -m pytest test_vibium.py -v --tb=short
+        run: |
+          python -m pytest test_vibium.py -v --tb=short
+          python ui_test_agent_vibium.py
       
       - name: Upload screenshots
         if: always()
